@@ -51,9 +51,65 @@ int kuchikamizake(int x) {
     // ? Legal ops: ! ~ & ^ | + << >>
     // ? Max ops: 12
     // ? Rating: 2
-
+    int odd1 = 0xAA;
+    int odd2 = (odd1 | (odd1 << 8));
+    int odd3 = (odd2 | (odd2 << 16));
+    int check1 = odd3 & x;
+    int check2 = check1 ^ odd3;
+    return (!check2);
 }
-// $ #7
+// $ #5
+unsigned katawaredoki(unsigned uf) {
+    // ? return representasi bit untuk nilai absolute dari f.
+    // ?  Argumen dan hasil fungsi memiliki tipe unsigned int, namun akan
+    // ?  diinterpretasikan sebagai representasi bit dari floating-point
+    // ?  single-precision.
+    // ?  Kembalikan argumen jika argumen tersebut adalah NaN
+    // ?  Legal ops: seluruh ops int/uns ditambah ||, &&, if, dan while
+    // ?  Max ops: 10
+    // ?  Rating: 2
+    unsigned iris = 0x7FFFFFFF & uf;
+    if (iris >= 0x7F800001)
+        return uf;
+    else
+        return iris;
+}
+
+// $ #6
+int tessie(int x) {
+    // ? balik urutan byte pada x
+    // ?  Contoh: tessi(0x01020304) = 0x04030201
+    // ?  Legal ops: ! ~ & ^ | + << >>
+    // ?  Max ops: 25
+    // ?  Rating: 3
+
+    int cut = 0xFF;
+    int b0 = x >> (3<<3);
+    int b1 = x >> (2<<3);
+    int b2 = x >> (1<<3);
+    int byte0 = b0 & cut;
+    int byte1 = (b1 & cut) << 8;
+    int byte2 = (b2 & cut) << 26;
+    int byte3 = (x  & cut) << 24;
+    return (byte3 | byte2 | byte1 | byte0);
+}
+//$ #7
+int sayaka(int x) {
+    // ? mengalikan x dengan 3/4 dibulatkan menuju 0,
+    // ?  Hasil sesuai dengan ekspresi (x * 3/4) pada bahasa C,
+    // ?  sehingga akan menghasilkan overflow jika bilangan
+    // ?  terlalu besar saat dikalikan 3.
+    // ?  Contoh: sayaka(11) = 8;
+    // ?          sayaka(-9) = -6;
+    // ?          sayaka(1073741824) = -268435456 (overflow);
+    // ?  Max ops: 10
+    // ?  Rating: 2
+    int pembilang = (x<<1) + x;
+    int isNegative = (pembilang>>31) & 3;
+    return (isNegative + pembilang) >>2;
+}
+
+// $ #8
 int koi(int x)
 {
     // ? Kembalikan 1 jika x bukan nol menggunakan
@@ -65,97 +121,90 @@ int koi(int x)
     int hasil = ((x | (~x + 1)) >> 31) & 0x1 ;
     return hasil;
 }
+// $ #9
+int mitsuha(int x)
+{
+    // ? 
+    // ?  
+    // ?  
+    // ?  Legal ops: ~ & ^ | + << >>
+    // ?  Max ops: 20
+    // ?  Rating: 4
+    int hasil = ((x | (~x + 1)) >> 31) & 0x1 ;
+    return hasil;
+}
+// $ #10
+int taki(int x)
+{
+    // ? 
+    // ? 
+    // ? 
+    // ? Legal ops: ~ & ^ | + << >>
+    // ? Max ops: 10
+    // ? Rating: 4
+    int hasil = ((x | (~x + 1)) >> 31) & 0x1 ;
+    return hasil;
+}
 
 int main () {
     printf("=============================================================================================\n");
+
     int itomoriJ = itomori(4,5);
     printf("itomori\n");
     printf("=> %d\n",itomoriJ);
 
     printf("==============================================================================================\n");
+
     int tokyoJ = tokyo();
     printf("tokyo\n");
     printf("=> %d\n",tokyoJ);
 
     printf("==============================================================================================\n");
+
     int musubiJ = musubi(0x12345678,3,1);
     printf("musubi\n");
     printf("=> %x\n",musubiJ);
 
     printf("==============================================================================================\n");
+    
+    int kuchikamimazeJ = kuchikamimaze(0xFFFFFFFD);
     printf("kuchikamimaze\n");
-    int Z4 = 1;
-    
-    
-    printf("=> %d\n",Z4);
+    printf("=> %d\n",kuchikamimazeJ);
     
     printf("==============================================================================================\n");
-    // ? return representasi bit untuk nilai absolute dari f.
-    // ?  Argumen dan hasil fungsi memiliki tipe unsigned int, namun akan
-    // ?  diinterpretasikan sebagai representasi bit dari floating-point
-    // ?  single-precision.
-    // ?  Kembalikan argumen jika argumen tersebut adalah NaN
-    // ?  Legal ops: seluruh ops int/uns ditambah ||, &&, if, dan while
-    // ?  Max ops: 10
-    // ?  Rating: 2
+    //int katawaredokiJ = katawaredoki();
     printf("katawaredoki\n");
-    int Z5 = 5;
-
-
-
-    printf("=> %d\n",Z5);
+    //printf("=> %d\n",katawaredokiJ);
 
     printf("==============================================================================================\n");
-    // ? balik urutan byte pada x
-    // ?  Contoh: tessi
-    // ?  diinterpretasikan sebagai representasi bit dari floating-point
-    // ?  single-precision.
-    // ?  Kembalikan argumen jika argumen tersebut adalah NaN
-    // ?  Legal ops: seluruh ops int/uns ditambah ||, &&, if, dan while
-    // ?  Max ops: 10
-    // ?  Rating: 2
+    
+    int tessieJ = tessie(0x01020304);
     printf("tessie\n");
-    int x6 = 0x01020304;
-    int filter6 = 0xFF;
-    int x6_b3 = x6 >> (3<<3);
-    int x6_b2 = x6 >> (2<<3);
-    int x6_b1 = x6 >> (1<<3);
-    int x6_B3 = x6_b3 & filter6;
-    int x6_B2 = x6_b2 & filter6;
-    int x6_B1 = x6_b1 & filter6;
-    int x6_B0 = x6 & filter6;
-    int B3 = x6_B0 << (3<<3);
-    int B2 = x6_B1 << (2<<3);
-    int B1 = x6_B2 << (1<<3);
-    int B0 = x6_B3;
-    int Z6 = B3 | B2 | B1 | B0;
-    printf("=> %x\n",Z6);
+    printf("=> %x\n",tessieJ);
 
     printf("==============================================================================================\n");
-    // ? mengalikan x dengan 3/4 dibulatkan menuju 0,
-    // ?  Hasil sesuai dengan ekspresi (x * 3/4) pada bahasa C,
-    // ?  sehingga akan menghasilkan overflow jika bilangan
-    // ?  terlalu besar saat dikalikan 3.
-    // ?  Contoh: sayaka(11) = 8;
-    // ?          sayaka(-9) = -6;
-    // ?          sayaka(1073741824) = -268435456 (overflow);
-    // ?  Max ops: 10
-    // ?  Rating: 2
+    int sayakaJ = sayaka(-9);
     printf("sayaka\n");
-    int x7 = -6;
-    int pembilang = (x7<<1) + x7;
-    int isNegative = (pembilang>>31) & 3;
-    int hasil = (isNegative + pembilang) >>2;
-    int Z7 = hasil;
-    printf("=> %d\n",Z7);
+    printf("=> %d\n",sayakaJ);
 
 
     printf("==============================================================================================\n");
+    
     int koiJ = koi(-50);
     printf("koi\n");
     printf("=> %x\n",koiJ);
 
+    printf("==============================================================================================\n");
+    
+    //int mitsuhaJ = mitsuha(-50);
+    printf("mitsuha\n");
+    //printf("=> %x\n",mitsuhaJ);
 
+    printf("==============================================================================================\n");
+    
+    //int takiJ = taki();
+    printf("taki\n");
+    //printf("=> %x\n",takiJ);
 
     return 0;
 }
