@@ -148,7 +148,12 @@ int taki(int x)
 
 int main () {
     printf("=============================================================================================\n");
-
+    int x = 15;
+    int y = x >> 3;
+    printf("%d\n",y);
+    int z = y<<3;
+    printf("%d\n",z);
+/*
     int itomoriJ = itomori(4,5);
     printf("itomori\n");
     printf("=> %d\n",itomoriJ);
@@ -205,7 +210,7 @@ int main () {
     //int takiJ = taki();
     printf("taki\n");
     //printf("=> %x\n",takiJ);
-
+*/
     return 0;
 }
 
