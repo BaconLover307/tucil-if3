@@ -1,0 +1,65 @@
+### Query dan Hasil dari PP01_13518135.pl ###
+Nama    : Gregorius Jovan Kresnadi
+NIM     : 13518135
+Kelas   : K-03
+Tanggal : 3 November 2019
+File    : PP01_13518135.txt
+
+---------------------------------
+Bagian I: INTRODUCTION TO PROLOG
+---------------------------------
+
+a. Suami dari Rias Gremory
+Query: | ?- suami(X,rias_gremory).
+X = ihsan ? 
+yes
+
+b. Paman dari Lil Tude
+Query: | ?- keponakan(lil_tude,X).
+X = mamet_rojab ? ;
+X = bowo ? ;
+X = arden
+yes
+
+c. Mertua dari Juri Sutantri
+Query: | ?- mertua(juri_sutantri,X).
+X = ihsan ? ;
+X = audy
+yes
+
+d.Nenek dari Ipul
+Query: | ?- cucu(ipul,X), wanita(X).
+X = juri_sutantri ?  ;
+X = emily
+yes
+ 
+e. Cucu dari Om Lutfi
+Query: | ?- cucu(X,om_lutfi).
+X = ipul ? 
+yes
+ 
+f. Ipar dari Ihsan (ipar: saudara kandung dari suami/istri)
+Query: menikah(ihsan,X), saudara(X,Y).
+X = rias_gremory
+Y = arden
+yes
+ 
+g. Sepupu dari Ipul
+Query: | ?- sepupu(X,ipul).
+X = lil_tude ? 
+yes
+ 
+h. Wanita yang merupakan anak tunggal
+Query: | ?- anaksulung(X), anakbungsu(X), wanita(X).
+X = audy ? 
+yes
+ 
+i. Pria yang belum menikah
+Query: | ?- pria(X), \+ (menikah(Y,X)).
+X = mamet_rojab ? a
+X = bowo
+X = lil_tude
+X = ipul
+yes
+
+ 
